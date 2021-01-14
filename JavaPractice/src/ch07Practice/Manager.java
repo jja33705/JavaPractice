@@ -1,8 +1,8 @@
 package ch07Practice;
 
 public class Manager extends Employee{
-	public Manager(String name, String address, int salary, int rrn, int bonus) {
-		super(name, address, salary, rrn);
+	public Manager(String name, String address, int salary, int rrn, Date date, int bonus) {
+		super(name, address, salary, rrn, date);
 		this.bonus=bonus;
 	}
 	private int bonus;

@@ -9,4 +9,7 @@ public class Animal {
 	public void sleep() {
 		System.out.println("sleep()가 호출되었음.");
 	}
+	public void sound() {
+		System.out.println("Animal 클래스의 sound()");
+	}
 }

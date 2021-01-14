@@ -12,6 +12,21 @@ public class AnimalTest {
 		eagle.eat();
 		eagle.sleep();
 		eagle.fly();
+		
+		Animal animal=new Animal();
+		Dog dog=new Dog();
+		Cat cat=new Cat();
+		
+		Animal obj;
+		
+		obj=animal;
+		obj.sound();
+		
+		obj=dog;
+		obj.sound();
+		
+		obj=cat;
+		obj.sound();
 	}
 
 }
