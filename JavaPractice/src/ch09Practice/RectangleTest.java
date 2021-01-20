@@ -13,6 +13,9 @@ public class RectangleTest {
 		}else {
 			System.out.println(r2+"°¡ ´õ Å®´Ï´Ù.");
 		}
+		System.out.println(Rectangle.findLargest(r1, r2));
+		System.out.println(Rectangle.findSmallest(r1, r2));
+		System.out.println(Rectangle.isEqual(r1, r2));
 	}
 
 }
