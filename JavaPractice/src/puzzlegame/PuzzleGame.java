@@ -35,6 +35,7 @@ public class PuzzleGame extends JFrame implements ActionListener{
 		reset.addActionListener(this);
 		south.add(reset);
 		this.add(south,BorderLayout.SOUTH);
+		this.setTitle("Puzzle Game");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setVisible(true);
