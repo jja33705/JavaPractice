@@ -13,9 +13,12 @@ import javax.swing.JPanel;
 public class Counter extends JFrame implements ActionListener{
 	private int count=0;
 	private JLabel label;
+	private JButton countDown;
+	private JButton countUp;
+	private JButton reset;
 	public Counter() {
 		JPanel panel=new JPanel();
-		JButton countDown=new JButton("카운터 감소");
+		countDown=new JButton("카운터 감소");
 		countDown.addActionListener(this);
 		panel.add(countDown);
 		JLabel name=new JLabel("Counter");
@@ -23,10 +26,10 @@ public class Counter extends JFrame implements ActionListener{
 		label=new JLabel(""+count);
 		label.setFont(new Font("Serif",Font.BOLD,100));
 		panel.add(label);
-		JButton countUp=new JButton("카운터 증가");
+		countUp=new JButton("카운터 증가");
 		countUp.addActionListener(this);
 		panel.add(countUp);
-		JButton reset=new JButton("리셋");
+		reset=new JButton("리셋");
 		reset.addActionListener(this);
 		this.add(reset,BorderLayout.SOUTH);
 		this.add(panel);
@@ -41,13 +44,13 @@ public class Counter extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("카운터 증가")) {
+		if(e.getSource()==countUp) {
 			label.setText(""+(++count));
 		}
-		if(e.getActionCommand().equals("카운터 감소")) {
+		if(e.getSource()==countDown) {
 			label.setText(""+(--count));
 		}
-		if(e.getActionCommand().equals("리셋")) {
+		if(e.getSource()==reset) {
 			count=0;
 			label.setText(""+count);
 		}
