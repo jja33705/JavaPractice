@@ -1,5 +1,6 @@
 package ch10Practice;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,9 @@ public class Counter extends JFrame implements ActionListener{
 		JButton countUp=new JButton("카운터 증가");
 		countUp.addActionListener(this);
 		panel.add(countUp);
+		JButton reset=new JButton("리셋");
+		reset.addActionListener(this);
+		this.add(reset,BorderLayout.SOUTH);
 		this.add(panel);
 		this.setSize(400,200);
 		this.setTitle("My Counter");
@@ -42,6 +46,10 @@ public class Counter extends JFrame implements ActionListener{
 		}
 		if(e.getActionCommand().equals("카운터 감소")) {
 			label.setText(""+(--count));
+		}
+		if(e.getActionCommand().equals("리셋")) {
+			count=0;
+			label.setText(""+count);
 		}
 	}
 }
