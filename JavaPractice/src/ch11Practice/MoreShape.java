@@ -30,10 +30,9 @@ public class MoreShape extends JFrame {
 	}
 	
 	class MyPanel extends JPanel {
-		ArrayList<Shape> shapeList;
+		ArrayList<Shape> shapeList = new ArrayList<>();;
 		
 		public MyPanel() {
-			shapeList = new ArrayList<>();
 			shapeList.add(new Rectangle2D.Float(10, 10, 70, 80));
 			shapeList.add(new RoundRectangle2D.Float(110, 10, 70, 80, 20, 20));
 			shapeList.add(new Ellipse2D.Float(210, 10, 70, 80));

@@ -37,9 +37,9 @@ public class FillShapes extends JFrame {
 			shapeList.add(new Rectangle2D.Float(10, 10, 70, 80));
 			shapeList.add(new RoundRectangle2D.Float(110, 10, 70, 80, 20, 20));
 			shapeList.add(new Ellipse2D.Float(210, 10, 70, 80));
-			shapeList.add(new Arc2D.Float(310, 10, 70, 80, 80, 180, Arc2D.PIE));
-			shapeList.add(new Arc2D.Float(410, 10, 70, 80, 80, 180, Arc2D.PIE));
-			shapeList.add(new Arc2D.Float(510, 10, 70, 80, 60, 200, Arc2D.PIE));
+			shapeList.add(new Arc2D.Float(310, 10, 70, 80, 60, 220, Arc2D.CHORD));
+			shapeList.add(new Arc2D.Float(410, 10, 70, 80, 60, 220, Arc2D.CHORD));
+			shapeList.add(new Arc2D.Float(510, 10, 70, 80, 60, 210, Arc2D.PIE));
 		}
 		@Override
 		protected void paintComponent(Graphics g) {
