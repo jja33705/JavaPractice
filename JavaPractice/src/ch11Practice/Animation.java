@@ -34,7 +34,7 @@ public class Animation extends JPanel implements ActionListener {
 		}
 		x = START_X;
 		y = START_Y;
-		timer = new Timer(5, this);
+		timer = new Timer(1, this);
 		timer.start();
 	}
 	
