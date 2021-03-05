@@ -1,5 +1,6 @@
 package ch11Practice;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,6 +24,7 @@ public class Animation extends JPanel implements ActionListener {
 	private boolean yIncrease = false;
 	
 	public Animation() {
+		this.setBackground(Color.BLACK);
 		File file = new File("spaceship.png");
 		try {
 			image = ImageIO.read(file);
@@ -32,7 +34,7 @@ public class Animation extends JPanel implements ActionListener {
 		}
 		x = START_X;
 		y = START_Y;
-		timer = new Timer(20, this);
+		timer = new Timer(5, this);
 		timer.start();
 	}
 	
