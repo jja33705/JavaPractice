@@ -1,9 +1,13 @@
 package ch11Practice;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,19 +18,52 @@ public class BazierCurve extends JFrame implements MouseListener, MouseMotionLis
 	
 	private int dragIndex = -1;
 	
+	public BazierCurve() {
+		this.setSize(500, 400);
+		this.setTitle("배지어 곡선 그리기");
+		JPanel panel = new BezierPanel();
+		panel.addMouseListener(this);
+		panel.addMouseMotionListener(this);
+		this.add(panel);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		this.setVisible(true);
+	}
+	
 	class BezierPanel extends JPanel {
 		@Override
 		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D g2d = (Graphics2D)g;
+			g2d.setColor(Color.BLACK);
+			GeneralPath path = new GeneralPath();
+			path.moveTo(xs[0], ys[0]);
+			path.curveTo(xs[1], ys[1], xs[2], ys[2], xs[3], ys[3]);
+			g2d.draw(path);
 			
+			for (int i = 0; i < 4; i++) {
+				if(i % 2 == 0) {
+					g2d.setColor(Color.BLUE);
+				} else {
+					g2d.setColor(Color.RED);
+				}
+				Rectangle2D rectangle = new Rectangle2D.Float(xs[i], ys[i], 16, 16);
+				g2d.fill(rectangle);
+			}
 		}
+	}
+	
+	public static void main(String[] args) {
+		new BazierCurve();
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		/*
-		 * 선택된 점이 있는지 보고 선택된 점의 x, y 좌표를 변경한다.
-		 */
-		repaint();
+		if (dragIndex != -1) {
+			xs[dragIndex] = e.getX();
+			ys[dragIndex] = e.getY();
+			repaint();
+		}
 	}
 
 	@Override
@@ -37,10 +74,11 @@ public class BazierCurve extends JFrame implements MouseListener, MouseMotionLis
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		/*
-		 *  네 개의 점 중에서 어떤 점이 선택되었는지를 체크
-		 *  dragIndex = 0 1 2 3
-		 */
+		for (int i = 0; i < 4; i++) {
+			if ((e.getX() >= xs[i]) && (e.getX() <= xs[i] + 16) && (e.getY() >= ys[i]) && (e.getY() <= ys[i] + 16)) {
+				dragIndex = i;
+			}
+		}
 	}
 
 	@Override
