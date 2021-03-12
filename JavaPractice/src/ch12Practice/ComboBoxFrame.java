@@ -56,17 +56,21 @@ public class ComboBoxFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JComboBox cb = (JComboBox)e.getSource();
 		String name = (String)cb.getSelectedItem();
-		boolean isExit = false;
-		for(int i = 0; i < animalList.getItemCount(); i++) {
-			if(name.equals(animalList.getItemAt(i))) {
-				isExit = true;
-				break;
+		System.out.println(e.getActionCommand());
+		if(e.getActionCommand().equals("comboBoxEdited")) {
+			boolean isExit = false;
+			for(int i = 0; i < animalList.getItemCount(); i++) {
+				if(name.equals(animalList.getItemAt(i))) {
+					isExit = true;
+					break;
+				}
 			}
+			if(isExit == false) {
+				animalList.addItem(name);
+			}
+		} else {
+			changePicture(name);
 		}
-		if(isExit == false) {
-			animalList.addItem(name);
-		}
-		changePicture(name);
 	}
 	
 	public static void main(String[] args) {
