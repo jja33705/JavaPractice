@@ -9,8 +9,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
 public class ToppingPanel extends JPanel implements ItemListener {
-	boolean[] topping = new boolean[4];
-	JCheckBox pepper, cheese, peperoni, bacon;
+	private boolean[] topping = new boolean[4];
+	private JCheckBox pepper;
+	private JCheckBox cheese;
+	private JCheckBox peperoni; 
+	private JCheckBox bacon;
 	
 	public ToppingPanel() {
 		this.setLayout(new GridLayout(4, 1));
@@ -44,5 +47,9 @@ public class ToppingPanel extends JPanel implements ItemListener {
 		} else if(source == bacon) {
 			topping[3] = e.getStateChange() == ItemEvent.SELECTED;
 		}
+	}
+	
+	public boolean[] getTopping() {
+		return topping;
 	}
 }

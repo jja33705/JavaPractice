@@ -11,9 +11,9 @@ import javax.swing.JTextField;
 public class ButtonPanel extends JPanel implements ActionListener {
 	public static final int[][] PIZZA_PRICE = {{12000, 18000, 24000}, {13000, 19000,25000}, {14000, 20000, 26000}} ;
 	public static final int[] TOPPING_PRICE = {1000, 1000, 2000, 3000};
-	TypePanel typePanel;
-	ToppingPanel toppingPanel;
-	SizePanel sizePanel;
+	private TypePanel typePanel;
+	private ToppingPanel toppingPanel;
+	private SizePanel sizePanel;
 	private JButton orderButton;
 	private JButton cancleButton;
 	private JTextField costField; 
@@ -39,15 +39,15 @@ public class ButtonPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == orderButton) {
-			int price = PIZZA_PRICE[typePanel.type][sizePanel.size];
+			int price = PIZZA_PRICE[typePanel.getType()][sizePanel.getPizzaSize()];
 			for(int i = 0; i < TOPPING_PRICE.length; i++) {
-				if(toppingPanel.topping[i]) {
+				if(toppingPanel.getTopping()[i]) {
 					price += TOPPING_PRICE[i];
 				}
 			}
 			costField.setText(String.valueOf(price));
 		} else if(e.getSource() == cancleButton) {
-			
+			costField.setText(null);
 		}
 	}
 }

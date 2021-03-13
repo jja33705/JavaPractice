@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 public class TypePanel extends JPanel implements ActionListener {
-	int type = 0;
-	JRadioButton combo, potato, bulgogi;
+	private int type = 0;
+	private JRadioButton combo;
+	private JRadioButton potato;
+	private JRadioButton bulgogi;
 	
 	public TypePanel() {
 		this.setLayout(new GridLayout(3, 1));
@@ -43,5 +45,9 @@ public class TypePanel extends JPanel implements ActionListener {
 		} else if(e.getSource() == bulgogi) {
 			type = 2;
 		}
+	}
+	
+	public int getType() {
+		return type;
 	}
 }

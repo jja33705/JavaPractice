@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 public class SizePanel extends JPanel implements ActionListener {
-	int size = 0;
-	JRadioButton small, medium, large;
+	private int size = 0;
+	private JRadioButton small;
+	private JRadioButton medium; 
+	private JRadioButton large;
 	
 	public SizePanel() {
 		this.setLayout(new GridLayout(3, 1));
@@ -43,5 +45,9 @@ public class SizePanel extends JPanel implements ActionListener {
 		} else if(e.getSource() == large) {
 			size = 2;
 		}
+	}
+	
+	public int getPizzaSize() {
+		return size;
 	}
 }
