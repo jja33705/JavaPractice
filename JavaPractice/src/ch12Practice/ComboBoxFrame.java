@@ -56,7 +56,6 @@ public class ComboBoxFrame extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		JComboBox cb = (JComboBox)e.getSource();
 		String name = (String)cb.getSelectedItem();
-		System.out.println(e.getActionCommand());
 		if(e.getActionCommand().equals("comboBoxEdited")) {
 			boolean isExit = false;
 			for(int i = 0; i < animalList.getItemCount(); i++) {
