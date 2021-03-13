@@ -7,9 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 public class PizzaTest extends JFrame {
-	TypePanel typePanel;
-	ToppingPanel toppingPanel;
-	SizePanel sizePanel;
+	private TypePanel typePanel;
+	private ToppingPanel toppingPanel;
+	private SizePanel sizePanel;
 	
 	public PizzaTest() {
 		this.setSize(350, 250);
