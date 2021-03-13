@@ -3,6 +3,7 @@ package ch12Practice;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
@@ -50,6 +51,6 @@ public class ToppingPanel extends JPanel implements ItemListener {
 	}
 	
 	public boolean[] getTopping() {
-		return topping;
+		return Arrays.copyOf(topping, topping.length);
 	}
 }
