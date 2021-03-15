@@ -4,13 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class TextConverter extends JFrame implements ActionListener {
+public class TextConverter extends JFrame implements ActionListener, KeyListener {
 	private JTextArea input, output;
 	private JButton translate, cancle;
 	
@@ -20,10 +22,11 @@ public class TextConverter extends JFrame implements ActionListener {
 		
 		JPanel textPanel = new JPanel();
 		textPanel.setLayout(new GridLayout(1, 2, 20, 20));
-		input = new JTextArea(10, 14);
+		input = new JTextArea(20, 28);
+		input.addKeyListener(this);
 		input.setLineWrap(true);
 		textPanel.add(input);
-		output = new JTextArea(10, 14);
+		output = new JTextArea(20, 28);
 		output.setLineWrap(true);
 		output.setEditable(false);
 		textPanel.add(output);
@@ -37,8 +40,7 @@ public class TextConverter extends JFrame implements ActionListener {
 		cancle.addActionListener(this);
 		buttonPanel.add(cancle);
 		this.add(buttonPanel, BorderLayout.SOUTH);
-		
-		this.setLocationRelativeTo(null);
+
 		this.pack();
 		this.setVisible(true);
 	}
@@ -49,12 +51,33 @@ public class TextConverter extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(input.getText().trim().length() == 0) return;
 		if(e.getSource() == translate) {
 			output.setText(ApiExamTranslateNmt.translate(input.getText()));
 		} else if(e.getSource() == cancle) {
-			input.setText(null);
 			output.setText(null);
+			input.setText(null);
 		}
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		if(input.getText().trim().length() == 0) return;
+		if(input.getText() == null) return;
+		if(input.getText().trim() == "") return;
+		output.setText(ApiExamTranslateNmt.translate(input.getText()));
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }
