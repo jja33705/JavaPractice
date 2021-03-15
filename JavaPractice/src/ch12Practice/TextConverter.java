@@ -25,7 +25,7 @@ public class TextConverter extends JFrame implements ActionListener {
 		textPanel.add(input);
 		output = new JTextArea(10, 14);
 		output.setLineWrap(true);
-		output.setEnabled(false);
+		output.setEditable(false);
 		textPanel.add(output);
 		this.add(textPanel, BorderLayout.CENTER);
 		
