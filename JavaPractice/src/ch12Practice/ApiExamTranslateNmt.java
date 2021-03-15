@@ -13,6 +13,10 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 // 네이버 기계번역 (Papago SMT) API 예제
 public class ApiExamTranslateNmt {
 	
@@ -33,18 +37,16 @@ public class ApiExamTranslateNmt {
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 
         String responseBody = post(apiURL, requestHeaders, text);
-        String[] arr = responseBody.split(":");
-        for(int i = 0; i < arr.length; i++) {
-        	if(arr[i].contains("translatedText")) {
-        		responseBody = arr[i+1];
-        	}
-        }
-        for(int i = 1; i < responseBody.length(); i++) {
-        	if(responseBody.charAt(i) == '"') {
-        		responseBody = responseBody.substring(1, i);
-        	}
-        }
-        return responseBody;
+        try {
+        	JSONParser jsonParser = new JSONParser();
+        	JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody);
+        	jsonObject = (JSONObject) jsonObject.get("message");
+        	jsonObject = (JSONObject) jsonObject.get("result");
+        	return (String) jsonObject.get("translatedText");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "번역에 실패했습니다.";
 	}
 
     private static String post(String apiUrl, Map<String, String> requestHeaders, String text){
