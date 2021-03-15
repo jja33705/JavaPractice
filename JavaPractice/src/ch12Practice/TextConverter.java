@@ -15,7 +15,7 @@ public class TextConverter extends JFrame implements ActionListener {
 	JButton translate, cancle;
 	
 	public TextConverter() {
-		this.setTitle("텍스트 변황");
+		this.setTitle("한글-영어 번역");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel textPanel = new JPanel();
@@ -49,7 +49,12 @@ public class TextConverter extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == translate) {
+			output.setText(ApiExamTranslateNmt.translate(input.getText()));
+		} else if(e.getSource() == cancle) {
+			input.setText(null);
+			output.setText(null);
+		}
 		
 	}
 }

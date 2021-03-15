@@ -13,22 +13,17 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-
 // 네이버 기계번역 (Papago SMT) API 예제
 public class ApiExamTranslateNmt {
-
-    public static void main(String[] args) throws ParseException{
-        String clientId = "faSM45W7GB5QBUeScEsK";//애플리케이션 클라이언트 아이디값";
+	
+	public static String translate(String input) {
+		String clientId = "faSM45W7GB5QBUeScEsK";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "JtVa5enVv2";//애플리케이션 클라이언트 시크릿값";
 
         String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
         String text;
         try {
-            text = URLEncoder.encode("안녕하세요. 오늘 기분은 어떻습니까?", "UTF-8");
+            text = URLEncoder.encode(input, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException("인코딩 실패", e);
         }
@@ -38,20 +33,19 @@ public class ApiExamTranslateNmt {
         requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 
         String responseBody = post(apiURL, requestHeaders, text);
-
-        System.out.println(responseBody);
-        
-        JSONParser jsonParser = new JSONParser(); 
-        JSONObject jsonObject = (JSONObject) jsonParser.parse(responseBody); 
-        System.out.println(jsonObject); 
-        JSONObject objMessage = (JSONObject) jsonObject.get("message"); 
-        System.out.println(objMessage); 
-        JSONObject objResult= (JSONObject) objMessage.get("result"); 
-        System.out.println(objResult); 
-        String translatedText = (String) objResult.get("translatedText"); 
-        System.out.println(translatedText);
-
-    }
+        String[] arr = responseBody.split(":");
+        for(int i = 0; i < arr.length; i++) {
+        	if(arr[i].contains("translatedText")) {
+        		responseBody = arr[i+1];
+        	}
+        }
+        for(int i = 1; i < responseBody.length(); i++) {
+        	if(responseBody.charAt(i) == '"') {
+        		responseBody = responseBody.substring(1, i);
+        	}
+        }
+        return responseBody;
+	}
 
     private static String post(String apiUrl, Map<String, String> requestHeaders, String text){
         HttpURLConnection con = connect(apiUrl);
@@ -107,5 +101,9 @@ public class ApiExamTranslateNmt {
         } catch (IOException e) {
             throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
         }
+    }
+    
+    public static String readText(String text) {
+    	return text;
     }
 }
