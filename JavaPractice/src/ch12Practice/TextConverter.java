@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class TextConverter extends JFrame implements ActionListener {
-	JTextArea input, output;
-	JButton translate, cancle;
+	private JTextArea input, output;
+	private JButton translate, cancle;
 	
 	public TextConverter() {
 		this.setTitle("한글-영어 번역");
