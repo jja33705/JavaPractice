@@ -39,10 +39,7 @@ public class Racket extends Rectangle implements KeyListener {
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -59,7 +56,6 @@ public class Racket extends Rectangle implements KeyListener {
 				ySpeed = 5;
 			}
 		}
-		
 	}
 
 	@Override

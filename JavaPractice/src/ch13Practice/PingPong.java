@@ -94,10 +94,7 @@ public class PingPong extends JPanel implements KeyListener{
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -109,7 +106,5 @@ public class PingPong extends JPanel implements KeyListener{
 	public void keyReleased(KeyEvent e) {
 		racket1.keyReleased(e);
 		racket2.keyReleased(e);
-		
 	}
-
 }
