@@ -4,31 +4,29 @@ public class Test {
 
 	public static void main(String[] args) {
 		String id = "scpark";
-		String pw = "1111";
+		String pw = "11111";
 		try {
 			login(id, pw);
 			System.out.println("환영합니다....");
-		} catch (Exception e) {
-			System.out.println("아이디, 암호 똑바로 입력해라 이 끼야..");
+		} catch (LoginIDException e) {
+			System.out.println(e.getMessage()+" : "+e.getErrorCode());
+			System.out.println("아이디  똑바로 입력해라 이 끼야..");
+		} catch (LoginPasswordException e) {
+			System.out.println(e.getMessage()+" : "+e.getErrorCode());
+			System.out.println("비밀번호  똑바로 입력해라 이 끼야..");
 		}
 	}
 	
-	private static void login(String id, String pw) throws Exception {
-//		try {
-//			checkDB(id, pw);
-//		} catch(Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-		
+	private static void login(String id, String pw) throws LoginIDException, LoginPasswordException {
 		checkDB(id, pw);
+		
 	}
 	
-	private static void checkDB(String id, String pw) throws Exception {
+	private static void checkDB(String id, String pw) throws LoginIDException, LoginPasswordException {
 		if(id.equals("scpark") == false) {
-			///id error
-			throw new Exception("ID Error");
+			throw new LoginIDException("ID Error");
 		} else if(pw.equals("1111") == false) {
-			throw new Exception("Password Error");
+			throw new LoginPasswordException("Password Error");
 		} else {
 			System.out.println("로그인 성공");
 		}
