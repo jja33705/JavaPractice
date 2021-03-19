@@ -110,15 +110,13 @@ public class Calculator extends JFrame implements ActionListener {
 			}
 		}
 		
-		
 		while(list.size() > 1) {
 			for(int i = 1; i < list.size();) {
 				if(list.get(i).charAt(0) == 'X') {
 					double n = Double.parseDouble(list.get(i-1)) * Double.parseDouble(list.get(i+1));
 					list.remove(i-1);
 					list.remove(i-1);
-					list.set(i-1, String.valueOf(n));
-					System.out.println(list.toString());
+					list.set(i-1, String.valueOf(new BigDecimal(n)));
 				} else i += 2;
 			}
 			for(int i = 1; i < list.size();) {
@@ -127,7 +125,6 @@ public class Calculator extends JFrame implements ActionListener {
 					list.remove(i-1);
 					list.remove(i-1);
 					list.set(i-1, String.valueOf(n));
-					System.out.println(list.toString());
 				} else i += 2;
 			}
 			for(int i = 1; i < list.size();) {
@@ -135,8 +132,7 @@ public class Calculator extends JFrame implements ActionListener {
 					double n = Double.parseDouble(list.get(i-1)) + Double.parseDouble(list.get(i+1));
 					list.remove(i-1);
 					list.remove(i-1);
-					list.set(i-1, String.valueOf(n));
-					System.out.println(list.toString());
+					list.set(i-1, String.valueOf(new BigDecimal(n)));
 				} else i += 2;
 			}
 		}
@@ -164,11 +160,11 @@ public class Calculator extends JFrame implements ActionListener {
 			}
 			String s = type.getText().substring(0,type.getText().length()-1);
 			type.setText(s);
-			typedOperator = (s.charAt(s.length()-1) >= '0' && s.charAt(s.length()-1) <= '9') || s.charAt(s.length()-1) == '.' ? false : true;
-		} else if((command.charAt(0) >= '0' && command.charAt(0) <= '9') || command.charAt(0) == '.') {
+			typedOperator = (s.charAt(s.length()-1) >= '0' && s.charAt(s.length()-1) <= '9') ? false : true;
+		} else if((command.charAt(0) >= '0' && command.charAt(0) <= '9')) {
 			type.setText(type.getText()+command);
 			typedOperator = false;
-		} else if(command.equals("-")) {
+		}else if(command.equals("-")) {
 			type.setText(type.getText()+command);
 			typedOperator = true;
 		} else {
@@ -191,6 +187,19 @@ public class Calculator extends JFrame implements ActionListener {
 				Double n = Math.sqrt(Double.parseDouble(result.getText()));
 				type.setText(""+n);
 				result.setText(""+n);
+			} else if(command.charAt(0) == '.') {
+				boolean canType = true;
+				String s = type.getText();
+				for(int i = s.length()-1; i >= 0; i--) {
+					if(s.charAt(i) > '9' || s.charAt(i) < '0') {
+						if(s.charAt(i) == '.') canType = false;
+						break;
+					}
+				}
+				if(canType) {
+					type.setText(type.getText()+command);
+					typedOperator = true;
+				}
 			} else {
 				type.setText(type.getText()+command);
 				typedOperator = true;
