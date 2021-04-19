@@ -1,7 +1,7 @@
 package ch15Practice;
 
 public class BoxInteger {
-private Integer value;
+	private Integer value;
 	
 	public Integer getValue() {
 		return value;
