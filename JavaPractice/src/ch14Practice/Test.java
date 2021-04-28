@@ -3,7 +3,7 @@ package ch14Practice;
 public class Test {
 
 	public static void main(String[] args) {
-		String id = "scpark";
+		String id = "scpa";
 		String pw = "11111";
 		try {
 			login(id, pw);
@@ -25,7 +25,7 @@ public class Test {
 	private static void checkDB(String id, String pw) throws LoginIDException, LoginPasswordException {
 		if(id.equals("scpark") == false) {
 			throw new LoginIDException("ID Error");
-		} else if(pw.equals("1111") == false) {
+		} else if(pw.equals("11111") == false) {
 			throw new LoginPasswordException("Password Error");
 		} else {
 			System.out.println("로그인 성공");

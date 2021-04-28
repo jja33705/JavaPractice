@@ -14,12 +14,14 @@ public class Exercise01 {
 					case 4:
 					case 5:
 						System.out.println("5이하의 수: " + val);
+						break;
 					case 6:
 					case 7:
 					case 8:
 					case 9:
 					case 10:
 						System.out.println("5초과 10이하의 수: " + val);
+						break;
 					default:
 						System.out.println("1~10사이의 값을 입력하세요.");
 				}
