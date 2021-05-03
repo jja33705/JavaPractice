@@ -37,7 +37,10 @@ public class CollectionsAPITest {
 	}
 	
 	public static void test1(List<? extends Object> list) {
-	
+		for (int i = 0; i < list.size(); i++) {
+			System.out.print(list.get(i)+ " ");
+		}
+		System.out.println();
 	}
 	
 	public static <T extends Comparable<T>> int myBinarySearch(List<T> list, T key) {
