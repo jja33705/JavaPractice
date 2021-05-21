@@ -53,7 +53,7 @@ public class SimpleDictionary extends JPanel implements ActionListener {
 		// JDBC 드라이버를 메모리에 적재하기
 		// JDBC 드라이버 클래스 이름은 DBMS마다 다르다.
 		try {
-			Class.forName(JDBC_CLASS_NAME);
+			Class.forName(JDBC_CLASS_NAME); //메모리에 적재
 			buildDictionaryFromDB();
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
@@ -70,6 +70,8 @@ public class SimpleDictionary extends JPanel implements ActionListener {
 			while(rs.next()) {
 				String key = rs.getString(1); //re.getString("kor");
 				String value = rs.getString("eng");
+				dict.put(key, value);
+				dict.put(value, key);
 				System.out.println(key + " : " + value);
 			}
 		} catch (SQLException e) {
@@ -117,6 +119,7 @@ public class SimpleDictionary extends JPanel implements ActionListener {
 			dict.put(value, key);
 //			addWordToFile(key, value);
 			addWordToDB(key, value);
+			addWordToDB(value, key);
 			JOptionPane.showMessageDialog(this, "영어단어가 추가되었습니다", "성공", JOptionPane.INFORMATION_MESSAGE);
 		}
 		inputField.requestFocus();
@@ -124,7 +127,34 @@ public class SimpleDictionary extends JPanel implements ActionListener {
 	}
 	
 	private void addWordToDB(String key, String value) {
-		
+		/* 드라이버를 메모리에 적재한다. <- 메모리 적재는 한 번만 하면 되고,
+		 * 이미 생성자에서 했다.
+		 * DB에 연결해서 Connection객체를 반환받는다.
+		 * Connection객체에게 PreparedStatement 객체를 요청한다.
+		 * PreparedStatement 객체의 executeUpdate() 메서드를 호출해서 DB에 저장한다.
+		 */
+		try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+			String sql = "INSERT INTO dict VALUES(?, ?)";
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			/*
+			 * 실행 준비
+			 * 	1. 문법검사
+			 * 	2. 정당성검사(테이블, 칼럼 등이 실제로 있는지, 있다면 이 사용자가 레코드를  삽입할 권한이 있는지
+			 *  3. 실행계획을 세운다. (execution plan)
+			 */
+			
+			pstmt.setString(1, key);
+			pstmt.setString(2, value);
+			/* ?자리의 컬럼 데이터 타입에 따라 적절한 setXXX() 메서드를 호출해야 한다.
+			 * 예를 들어, 칼럼이 CHAR 또는 VARCHAR타입이면 setString()
+			 * 칼럼이 TIMESTAMP타입이면 setDate(), setTimestamp(),
+			 * 칼럼이 INT 타입이면 setInt()...
+			 */
+			pstmt.executeUpdate(); //Insert, Delete, Update문을 실행할 때 호출. 몇개의 로우가 영향을 받는지 반환
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	private void addWordToFile(String key, String value) {
