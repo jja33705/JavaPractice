@@ -1,4 +1,4 @@
-package dictionary;
+package JDBC;
 
 import java.io.File;
 import java.io.FileNotFoundException;

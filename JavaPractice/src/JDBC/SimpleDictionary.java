@@ -1,4 +1,4 @@
-package dictionary;
+package JDBC;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
