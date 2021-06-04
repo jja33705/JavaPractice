@@ -12,5 +12,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/jja33/git/JavaPractice/JavaPractice/src/ch12Practice/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jja33/Desktop/gson-2.8.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

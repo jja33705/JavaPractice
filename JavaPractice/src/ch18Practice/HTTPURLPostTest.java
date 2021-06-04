@@ -10,7 +10,7 @@ import java.net.URL;
 public class HTTPURLPostTest {
 	public static void main(String[] args) {
 		try {
-			String site = "http://127.0.0.1:3001/";
+			String site = "http://127.0.0.1:8082/todos";
 			
 			URL url = new URL(site);
 			
@@ -19,7 +19,7 @@ public class HTTPURLPostTest {
 			con.setDoInput(true);
 			con.setDoOutput(true);
 			
-			con.setRequestProperty("content-type", "application/x-www/form-urlencoded");
+			con.setRequestProperty("content-type", "application/x-www-form-urlencoded");
 			
 			String data = "id=scpark&pw=1111";
 //			StringBuffer buffer = new StringBuffer();
