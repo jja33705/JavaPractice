@@ -74,7 +74,7 @@ public class RemoteJSON {
 		return postList;
 	}
 	
-	private static void insertIntoDB(Post[] posts) throws Exception{
+	private static void insertIntoDB(Post[] posts) throws Exception {
 		// 드라이버 로딩
 		// DB서버에 연결하고
 		// Connection con = DriverManager.getConnection(...);
