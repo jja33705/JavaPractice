@@ -28,7 +28,7 @@ public class Dictionary extends JFrame implements ActionListener {
 	
 	private static final String JDBC_CLASS_NAME = "org.mariadb.jdbc.Driver";
 	
-	private static final String DB_URL = "jdbc:mariadb://localhost:3306/dictionary";
+	private static final String DB_URL = "jdbc:mariadb://localhost:3306/java";
 	
 	private static final String DB_USER = "root";
 	
@@ -55,7 +55,7 @@ public class Dictionary extends JFrame implements ActionListener {
 		this.add(panel);
 		
 		this.setSize(new Dimension(600, 80));
-		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 	}
 	

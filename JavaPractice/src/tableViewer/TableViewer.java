@@ -91,7 +91,7 @@ public class TableViewer extends JFrame implements ActionListener{
 		finishBtn.addActionListener(this);
 		this.add(finishBtn);
 		
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setSize(350, 200);
 		this.setVisible(true);
